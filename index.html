@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>APSACS Registration Form</title>
+
+<style>
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    background-color:#f4f8f4;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+header{
+    background-color:#0a5c0a;
+    color:white;
+    padding:15px 20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.logo-area{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.header-btn button{
+    background:transparent;
+    color:white;
+    border:2px solid white;
+    border-radius:20px;
+    padding:6px 16px;
+    margin-left:8px;
+    cursor:pointer;
+}
+
+.form-box{
+    max-width:520px;
+    margin:30px auto;
+    background:white;
+    padding:25px;
+    border-radius:12px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.1);
+}
+
+h2{
+    margin-bottom:5px;
+}
+
+.section{
+    margin-top:25px;
+}
+
+.section h3{
+    background:#0a5c0a;
+    color:white;
+    padding:10px;
+    border-radius:6px;
+    font-size:16px;
+}
+
+label{
+    font-weight:bold;
+    display:block;
+    margin-top:12px;
+}
+
+input[type="text"],
+input[type="tel"],
+input[type="email"],
+input[type="password"],
+input[type="file"]{
+    width:100%;
+    padding:10px;
+    margin-top:6px;
+    margin-bottom:14px;
+    border-radius:6px;
+    border:1px solid #ccc;
+    font-size:14px;
+}
+
+.photo-box{
+    border:2px dashed #a3d3a3;
+    padding:20px;
+    text-align:center;
+    border-radius:8px;
+}
+
+.note{
+    font-size:12px;
+    color:#555;
+}
+
+.checkbox-row{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.actions{
+    text-align:center;
+    margin-top:25px;
+}
+
+.actions button{
+    padding:12px 35px;
+    background:#0a5c0a;
+    color:white;
+    border:none;
+    border-radius:25px;
+    cursor:pointer;
+}
+</style>
+
+<script>
+function submitform(){
+
+    // NAME
+    let username = document.getElementById('username').value;
+    let nameError = document.getElementById('name-error');
+
+    if (username === ""){
+        nameError.innerText = "Name is required!";
+        return;
+    } else {
+        nameError.innerText = "";
+    }
+
+    // IMAGE
+    let image = document.getElementById('image').files.length;
+    let imageError = document.getElementById('image-error');
+
+    if (image === 0){
+        imageError.innerText = "Image is required!";
+        return;
+    } else {
+        imageError.innerText = "";
+    }
+
+    // EMAIL
+    let email = document.getElementById('email').value;
+    let emailError = document.getElementById('email-error');
+
+    if (email === ""){
+        emailError.innerText = "Email is required!";
+        return;
+    } else if (!email.includes("@")){
+        emailError.innerText = "Email must contain @ symbol!";
+        return;
+    } else {
+        emailError.innerText = "";
+    }
+
+    // PASSWORD
+    let password = document.getElementById('password').value;
+    let passError = document.getElementById('pass-error');
+
+    if (password === ""){
+        passError.innerText = "Password is required!";
+        return;
+    } else if (password.length < 6){
+        passError.innerText = "Password must be at least 6 characters!";
+        return;
+    } else {
+        passError.innerText = "";
+    }
+
+    // PHONE NUMBER
+    let phone = document.getElementById('phonenumber').value;
+    let phoneError = document.getElementById('phone-error');
+
+    if (phone === ""){
+        phoneError.innerText = "Phone number is required!";
+        return;
+    } else if (phone.length < 11){
+        phoneError.innerText = "Phone number must be at least 11 digits!";
+        return;
+    } else {
+        phoneError.innerText = "";
+    }
+
+    alert("Welcome " + username + "! Your form has been submitted successfully.");
+}
+</script>
+</head>
+
+<body>
+
+<header>
+    <div class="logo-area">
+        <h1>APSACS</h1>
+    </div>
+
+    <div class="header-btn">
+        <button>Sign up</button>
+        <button>Sign in</button>
+    </div>
+</header>
+
+<div class="form-box">
+
+<h2>Registration Form</h2>
+<p>Academic Year 2026–2027</p>
+
+<form onsubmit="submitform(); return false;">
+
+<div class="section">
+<h3>Student Personal Information</h3>
+
+<div class="photo-box">
+<input type="file" id="image" accept="image/*">
+<p id="image-error" style="color:red;font-size:12px;"></p>
+</div>
+
+<label>Student Name</label>
+<p id="name-error" style="color:red;font-size:12px;"></p>
+<input type="text" id="username">
+
+<label>Email</label>
+<input type="email" id="email">
+<p id="email-error" style="color:red;font-size:12px;"></p>
+
+<label>Password</label>
+<input type="password" id="password">
+<p id="pass-error" style="color:red;font-size:12px;"></p>
+
+<label>Phone Number</label>
+<input type="tel" id="phonenumber">
+<p id="phone-error" style="color:red;font-size:12px;"></p>
+
+</div>
+
+<div class="actions">
+<button type="submit">Submit Registration</button>
+</div>
+
+</form>
+
+</div>
+
+</body>
+</html>
