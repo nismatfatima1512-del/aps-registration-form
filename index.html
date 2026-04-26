@@ -7,13 +7,11 @@
 
 <style>
 
-
 body{
     margin:0;
     background-color: #d1d5db;
     font-family:Arial, Helvetica, sans-serif;
 }
-
 
 header{
     background-color:#0a5c0a;
@@ -23,7 +21,6 @@ header{
     justify-content:space-between;
     align-items:center;
 }
-
 
 .logo-area{
     display:flex;
@@ -74,13 +71,11 @@ h2{
     font-size:16px;
 }
 
-
 label{
     font-weight:bold;
     display:block;
     margin-top:12px;
 }
-
 
 input[type="text"],
 input[type="tel"],
@@ -88,15 +83,14 @@ input[type="email"],
 input[type="password"],
 input[type="file"],
 textarea{
-    width:100%;
-    padding:10px;
-    margin-top:6px;
-    margin-bottom:14px;
+    width:96%;
+    padding:9px;
+    margin-top:5px;
+    margin-bottom:4px;
     border-radius:6px;
     border:1px solid #ccc;
     font-size:14px;
 }
-
 
 .photo-box{
     border:2px dashed #a3d3a3;
@@ -125,7 +119,6 @@ textarea{
     margin:0;
 }
 
-
 .actions{
     text-align:center;
     margin-top:25px;
@@ -144,6 +137,32 @@ textarea{
 .actions button:hover{
     background:#084808;
 }
+
+input[type="text"],
+input[type="tel"],
+input[type="email"],
+input[type="password"],
+input[type="file"]{
+    margin-bottom:4px;
+}
+
+#name-error,
+#fathername-error,
+#email-error,
+#password-error,
+#phone-error,
+#image-error{
+    display:block;
+    margin-top:4px;
+    margin-bottom:8px;
+    font-size:12px;
+    color:red;
+}
+
+label{
+    margin-bottom:2px;
+}
+
 </style>
 
 <script>
@@ -151,7 +170,6 @@ function submitform(){
 
     let valid = true;
 
-    // NAME
     let username = document.getElementById('username').value;
     let nameError = document.getElementById('name-error');
 
@@ -162,7 +180,16 @@ function submitform(){
         nameError.innerText = "";
     }
 
-    // IMAGE
+    let fathername = document.getElementById('fathername').value;
+    let fathernameerror = document.getElementById('fathername-error');
+
+    if (fathername === ""){
+        fathernameerror.innerText = "father name is required!";
+        valid = false;
+    } else {
+        fathernameerror.innerText = "";
+    }
+
     let image = document.getElementById('image').value;
     let imageError = document.getElementById('image-error');
 
@@ -173,7 +200,6 @@ function submitform(){
         imageError.innerText = "";
     }
 
-    // EMAIL
     let email = document.getElementById('email').value;
     let emailError = document.getElementById('email-error');
 
@@ -188,7 +214,6 @@ function submitform(){
         emailError.innerText = "";
     }
 
-    // PASSWORD
     let password = document.getElementById('password').value;
     let passwordError = document.getElementById('password-error');
 
@@ -203,7 +228,6 @@ function submitform(){
         passwordError.innerText = "";
     }
 
-    // PHONE NUMBER
     let phone = document.getElementById('phonenumber').value;
     let phoneError = document.getElementById('phone-error');
 
@@ -218,9 +242,8 @@ function submitform(){
         phoneError.innerText = "";
     }
 
-    // FINAL
     if (valid){
-        alert("Welcome " + username + "! Your form has been submitted successfully.");
+       document.querySelector(".form-box").style.display = "none";
     }
 }
 </script>
@@ -228,7 +251,6 @@ function submitform(){
 
 <body>
 
-<!-- HEADER -->
 <header>
     <div class="logo-area">
         <h1>APSACS</h1>
@@ -240,7 +262,6 @@ function submitform(){
     </div>
 </header>
 
-<!-- FORM -->
 <div class="form-box">
 
 <h2>Registration Form</h2>
@@ -248,7 +269,6 @@ function submitform(){
 
 <form>
 
-<!-- PERSONAL INFO -->
 <div class="section">
 <h3>Student Personal Information</h3>
 
@@ -264,6 +284,7 @@ function submitform(){
 <input type="text" id="username" placeholder="Enter student name">
 
 <label>Father Name</label>
+<p id="fathername-error" style="color:red;font-size:12px;"></p>
 <input type="text" id="fathername" placeholder="Enter father name">
 
 <label>Email</label>
@@ -280,7 +301,6 @@ function submitform(){
 
 </div>
 
-<!-- DOCUMENTS -->
 <div class="section">
 <h3>Upload Documents</h3>
 
@@ -291,7 +311,6 @@ function submitform(){
 <input type="file">
 </div>
 
-<!-- DECLARATION -->
 <div class="section">
 <h3>Declaration</h3>
 
@@ -301,7 +320,6 @@ function submitform(){
 </div>
 </div>
 
-<!-- SUBMIT -->
 <div class="actions">
 <button type="button" onclick="submitform()">Submit Registration</button>
 </div>
