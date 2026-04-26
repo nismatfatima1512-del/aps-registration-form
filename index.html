@@ -163,6 +163,47 @@ label{
     margin-bottom:2px;
 }
 
+@media (max-width: 600px){
+
+    header{
+        flex-direction:column;
+        text-align:center;
+        gap:10px;
+    }
+
+    .header-btn{
+        display:flex;
+        gap:10px;
+    }
+
+    .form-box{
+        margin:15px;
+        padding:18px;
+    }
+
+    input[type="text"],
+    input[type="tel"],
+    input[type="email"],
+    input[type="password"],
+    input[type="file"],
+    textarea{
+        width:100%;
+    }
+
+    .actions button{
+        width:100%;
+        padding:14px;
+    }
+
+    h2{
+        font-size:20px;
+    }
+
+    .section h3{
+        font-size:14px;
+    }
+}
+
 </style>
 
 <script>
@@ -243,7 +284,9 @@ function submitform(){
     }
 
     if (valid){
-       document.querySelector(".form-box").style.display = "none";
+      var a= document.querySelector(".form-box")
+      a.style.display = "none";
+      window.location.href='index1.html'
     }
 }
 </script>
