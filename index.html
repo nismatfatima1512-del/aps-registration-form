@@ -1,375 +1,380 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>APSACS Registration Form</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>APSACS Registration Form</title>
 
-<style>
+    <style>
+        body {
+            margin: 0;
+            background-color: #d1d5db;
+            font-family: Arial, Helvetica, sans-serif;
+        }
 
-body{
-    margin:0;
-    background-color: #d1d5db;
-    font-family:Arial, Helvetica, sans-serif;
-}
+        header {
+            background-color: #0a5c0a;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-header{
-    background-color:#0a5c0a;
-    color:white;
-    padding:15px 20px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-}
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
 
-.logo-area{
-    display:flex;
-    align-items:center;
-    gap:10px;
-}
+        .logo-area img {
+            width: 45px;
+            height: 45px;
+            object-fit: contain;
+        }
 
-.logo-area img{
-    width:45px;
-    height:45px;
-    object-fit:contain;
-}
+        .header-btn button {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+            border-radius: 20px;
+            padding: 6px 16px;
+            margin-left: 8px;
+            margin-top: 3px;
+            cursor: pointer;
+        }
 
-.header-btn button{
-    background:transparent;
-    color:white;
-    border:2px solid white;
-    border-radius:20px;
-    padding:6px 16px;
-    margin-left:8px;
-    margin-top: 3px;
-    cursor:pointer;
-}
+        /* FORM BOX */
+        .form-box {
+            max-width: 520px;
+            margin: 30px auto;
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
 
-/* FORM BOX */
-.form-box{
-    max-width:520px;
-    margin:30px auto;
-    background:white;
-    padding:25px;
-    border-radius:12px;
-    box-shadow:0 10px 25px rgba(0,0,0,0.1);
-}
+        h2 {
+            margin-bottom: 5px;
+        }
 
-h2{
-    margin-bottom:5px;
-}
+        .section {
+            margin-top: 25px;
+        }
 
-.section{
-    margin-top:25px;
-}
+        .section h3 {
+            background: #0a5c0a;
+            color: white;
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 16px;
+        }
 
-.section h3{
-    background:#0a5c0a;
-    color:white;
-    padding:10px;
-    border-radius:6px;
-    font-size:16px;
-}
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 12px;
+        }
 
-label{
-    font-weight:bold;
-    display:block;
-    margin-top:12px;
-}
+        input[type="text"],
+        input[type="tel"],
+        input[type="email"],
+        input[type="password"],
+        input[type="file"],
+        textarea {
+            width: 96%;
+            padding: 9px;
+            margin-top: 5px;
+            margin-bottom: 4px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
 
-input[type="text"],
-input[type="tel"],
-input[type="email"],
-input[type="password"],
-input[type="file"],
-textarea{
-    width:96%;
-    padding:9px;
-    margin-top:5px;
-    margin-bottom:4px;
-    border-radius:6px;
-    border:1px solid #ccc;
-    font-size:14px;
-}
+        .photo-box {
+            border: 2px dashed #a3d3a3;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
 
-.photo-box{
-    border:2px dashed #a3d3a3;
-    padding:20px;
-    text-align:center;
-    border-radius:8px;
-    margin-bottom:15px;
-}
+        .note {
+            font-size: 12px;
+            color: #555;
+            margin-top: -8px;
+            margin-bottom: 10px;
+        }
 
-.note{
-    font-size:12px;
-    color:#555;
-    margin-top:-8px;
-    margin-bottom:10px;
-}
+        .checkbox-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
 
-.checkbox-row{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    margin-top:10px;
-}
+        .checkbox-row input {
+            width: auto;
+            margin: 0;
+        }
 
-.checkbox-row input{
-    width:auto;
-    margin:0;
-}
+        .actions {
+            text-align: center;
+            margin-top: 25px;
+        }
 
-.actions{
-    text-align:center;
-    margin-top:25px;
-}
+        .actions button {
+            padding: 12px 35px;
+            background: #0a5c0a;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-size: 15px;
+            cursor: pointer;
+        }
 
-.actions button{
-    padding:12px 35px;
-    background:#0a5c0a;
-    color:white;
-    border:none;
-    border-radius:25px;
-    font-size:15px;
-    cursor:pointer;
-}
+        .actions button:hover {
+            background: #084808;
+        }
 
-.actions button:hover{
-    background:#084808;
-}
+        input[type="text"],
+        input[type="tel"],
+        input[type="email"],
+        input[type="password"],
+        input[type="file"] {
+            margin-bottom: 4px;
+        }
 
-input[type="text"],
-input[type="tel"],
-input[type="email"],
-input[type="password"],
-input[type="file"]{
-    margin-bottom:4px;
-}
+        #name-error,
+        #fathername-error,
+        #email-error,
+        #password-error,
+        #phone-error,
+        #image-error {
+            display: block;
+            margin-top: 4px;
+            margin-bottom: 8px;
+            font-size: 12px;
+            color: red;
+        }
 
-#name-error,
-#fathername-error,
-#email-error,
-#password-error,
-#phone-error,
-#image-error{
-    display:block;
-    margin-top:4px;
-    margin-bottom:8px;
-    font-size:12px;
-    color:red;
-}
+        label {
+            margin-bottom: 2px;
+        }
 
-label{
-    margin-bottom:2px;
-}
+        @media (max-width: 600px) {
 
-@media (max-width: 600px){
+            header {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
 
-    header{
-        flex-direction:column;
-        text-align:center;
-        gap:10px;
-    }
+            .header-btn {
+                display: flex;
+                gap: 10px;
+            }
 
-    .header-btn{
-        display:flex;
-        gap:10px;
-    }
+            .form-box {
+                margin: 15px;
+                padding: 18px;
+            }
 
-    .form-box{
-        margin:15px;
-        padding:18px;
-    }
+            input[type="text"],
+            input[type="tel"],
+            input[type="email"],
+            input[type="password"],
+            input[type="file"],
+            textarea {
+                width: 95%;
+            }
 
-    input[type="text"],
-    input[type="tel"],
-    input[type="email"],
-    input[type="password"],
-    input[type="file"],
-    textarea{
-        width:95%;
-    }
+            .actions button {
+                width: 100%;
+                padding: 14px;
+            }
 
-    .actions button{
-        width:100%;
-        padding:14px;
-    }
+            h2 {
+                font-size: 20px;
+            }
 
-    h2{
-        font-size:20px;
-    }
+            .section h3 {
+                font-size: 14px;
+            }
+        }
+    </style>
 
-    .section h3{
-        font-size:14px;
-    }
-}
+    <script>
 
-</style>
+        function markValid() {
+            console.log("Validation");
+        }
 
-<script>
-function submitform(){
+        function submitform() {
 
-    let valid = true;
+            let valid = true;
 
-    let username = document.getElementById('username').value;
-    let nameError = document.getElementById('name-error');
+            let username = document.getElementById('username').value;
+            let nameError = document.getElementById('name-error');
 
-    if (username === ""){
-        nameError.innerText = "name is required!";
-        valid = false;
-    } else {
-        nameError.innerText = "";
-    }
+            if (username === "") {
+                nameError.innerText = "name is required!";
+                valid = false;
+            } else {
+                nameError.innerText = "";
+            }
 
-    let fathername = document.getElementById('fathername').value;
-    let fathernameerror = document.getElementById('fathername-error');
+            let fathername = document.getElementById('fathername').value;
+            let fathernameerror = document.getElementById('fathername-error');
 
-    if (fathername === ""){
-        fathernameerror.innerText = "father name is required!";
-        valid = false;
-    } else {
-        fathernameerror.innerText = "";
-    }
+            if (fathername === "") {
+                fathernameerror.innerText = "father name is required!";
+                valid = false;
+            } else {
+                fathernameerror.innerText = "";
+            }
 
-    let image = document.getElementById('image').value;
-    let imageError = document.getElementById('image-error');
+            let image = document.getElementById('image').value;
+            let imageError = document.getElementById('image-error');
 
-    if (image === ""){
-        imageError.innerText = "image is required!";
-        valid = false;
-    } else {
-        imageError.innerText = "";
-    }
+            if (image === "") {
+                imageError.innerText = "image is required!";
+                valid = false;
+            } else {
+                imageError.innerText = "";
+            }
 
-    let email = document.getElementById('email').value;
-    let emailError = document.getElementById('email-error');
+            let email = document.getElementById('email').value;
+            let emailError = document.getElementById('email-error');
 
-    if (email === ""){
-        emailError.innerText = "Email is required!";
-        valid = false;
-    }
-    else if (email.indexOf("@") === -1){
-        emailError.innerText = "Email must contain @ symbol!";
-        valid = false;
-    } else {
-        emailError.innerText = "";
-    }
+            if (email === "") {
+                emailError.innerText = "Email is required!";
+                valid = false;
+            }
+            else if (email.indexOf("@") === -1) {
+                emailError.innerText = "Email must contain @ symbol!";
+                valid = false;
+            } else {
+                emailError.innerText = "";
+            }
 
-    let password = document.getElementById('password').value;
-    let passwordError = document.getElementById('password-error');
+            let password = document.getElementById('password').value;
+            let passwordError = document.getElementById('password-error');
 
-    if (password === ""){
-        passwordError.innerText = "Password is required!";
-        valid = false;
-    }
-    else if (password.length < 6){
-        passwordError.innerText = "Password must be at least 6 characters!";
-        valid = false;
-    } else {
-        passwordError.innerText = "";
-    }
+            if (password === "") {
+                passwordError.innerText = "Password is required!";
+                valid = false;
+            }
+            else if (password.length < 6) {
+                passwordError.innerText = "Password must be at least 6 characters!";
+                valid = false;
+            } else {
+                passwordError.innerText = "";
+            }
 
-    let phone = document.getElementById('phonenumber').value;
-    let phoneError = document.getElementById('phone-error');
+            let phone = document.getElementById('phonenumber').value;
+            let phoneError = document.getElementById('phone-error');
 
-    if (phone === ""){
-        phoneError.innerText = "Phone number is required!";
-        valid = false;
-    }
-    else if (phone.length < 11){
-        phoneError.innerText = "Phone number must be at least 11 digits!";
-        valid = false;
-    } else {
-        phoneError.innerText = "";
-    }
+            if (phone === "") {
+                phoneError.innerText = "Phone number is required!";
+                valid = false;
+            }
+            else if (phone.length < 11) {
+                phoneError.innerText = "Phone number must be at least 11 digits!";
+                valid = false;
+            } else {
+                phoneError.innerText = "";
+            }
 
-    if (valid){
-      var a= document.querySelector(".form-box")
-      a.style.display = "none";
-      window.location.href='index1.html'
-    }
-}
-</script>
+            if (valid) {
+                var a = document.querySelector(".form-box")
+                a.style.display = "none";
+                window.location.href = 'index1.html'
+            }
+        }
+    </script>
 </head>
 
 <body>
 
-<header>
-    <div class="logo-area">
-        <h1>APSACS</h1>
+    <header>
+        <div class="logo-area">
+            <h1>APSACS</h1>
+        </div>
+
+        <div class="header-btn">
+            <button>Sign up</button>
+            <button>Sign in</button>
+        </div>
+    </header>
+
+    <div class="form-box">
+
+        <h2>Registration Form</h2>
+        <p>Academic Year 2026–2027</p>
+
+        <form>
+
+            <div class="section">
+                <h3>Student Personal Information</h3>
+
+                <div class="photo-box">
+                    <input type="file" id="image" accept="image/*">
+                    <p id="image-error" style="color:red;font-size:12px;"></p>
+                    <p><b>Passport Size Photo</b></p>
+                    <p class="note">JPG/PNG, max 2MB</p>
+                </div>
+
+                <label>Student Name</label>
+                <p id="name-error" style="color:red;font-size:12px;"></p>
+                <input type="text" id="username" placeholder="Enter student name">
+
+                <label>Father Name</label>
+                <p id="fathername-error" style="color:red;font-size:12px;"></p>
+                <input type="text" id="fathername" placeholder="Enter father name">
+
+                <label>Email</label>
+                <input type="email" id="email" placeholder="Enter email">
+                <p id="email-error" style="color:red;font-size:12px;"></p>
+
+                <label>Password</label>
+                <input type="password" id="password" placeholder="Enter password">
+                <p id="password-error" style="color:red;font-size:12px;"></p>
+
+                <label>Phone Number</label>
+                <input type="tel" id="phonenumber" placeholder="Enter phone number">
+                <p id="phone-error" style="color:red;font-size:12px;"></p>
+
+            </div>
+
+            <div class="section">
+                <h3>Upload Documents</h3>
+
+                <label>CNIC / Passport</label>
+                <input type="file">
+
+                <label>Educational Certificate</label>
+                <input type="file">
+            </div>
+
+            <div class="section">
+                <h3>Declaration</h3>
+
+                <div class="checkbox-row">
+                    <input type="checkbox" required>
+                    <span>I declare that the information provided is correct.</span>
+                </div>
+            </div>
+
+            <div class="actions">
+                <button type="button" onclick="submitform()">Submit Registration</button>
+            </div>
+
+        </form>
+
     </div>
-
-    <div class="header-btn">
-        <button>Sign up</button>
-        <button>Sign in</button>
-    </div>
-</header>
-
-<div class="form-box">
-
-<h2>Registration Form</h2>
-<p>Academic Year 2026–2027</p>
-
-<form>
-
-<div class="section">
-<h3>Student Personal Information</h3>
-
-<div class="photo-box">
-<input type="file" id="image" accept="image/*">
-<p id="image-error" style="color:red;font-size:12px;"></p>
-<p><b>Passport Size Photo</b></p>
-<p class="note">JPG/PNG, max 2MB</p>
-</div>
-
-<label>Student Name</label>
-<p id="name-error" style="color:red;font-size:12px;"></p>
-<input type="text" id="username" placeholder="Enter student name">
-
-<label>Father Name</label>
-<p id="fathername-error" style="color:red;font-size:12px;"></p>
-<input type="text" id="fathername" placeholder="Enter father name">
-
-<label>Email</label>
-<input type="email" id="email" placeholder="Enter email">
-<p id="email-error" style="color:red;font-size:12px;"></p>
-
-<label>Password</label>
-<input type="password" id="password" placeholder="Enter password">
-<p id="password-error" style="color:red;font-size:12px;"></p>
-
-<label>Phone Number</label>
-<input type="tel" id="phonenumber" placeholder="Enter phone number">
-<p id="phone-error" style="color:red;font-size:12px;"></p>
-
-</div>
-
-<div class="section">
-<h3>Upload Documents</h3>
-
-<label>CNIC / Passport</label>
-<input type="file">
-
-<label>Educational Certificate</label>
-<input type="file">
-</div>
-
-<div class="section">
-<h3>Declaration</h3>
-
-<div class="checkbox-row">
-<input type="checkbox" required>
-<span>I declare that the information provided is correct.</span>
-</div>
-</div>
-
-<div class="actions">
-<button type="button" onclick="submitform()">Submit Registration</button>
-</div>
-
-</form>
-
-</div>
 
 </body>
+
 </html>
