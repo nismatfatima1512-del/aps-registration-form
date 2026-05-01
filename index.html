@@ -89,7 +89,7 @@ textarea{
     margin-bottom:4px;
     border-radius:6px;
     border:1px solid #ccc;
-    font-size:14px;
+    font: size 16px;
 }
 
 .photo-box{
@@ -207,93 +207,147 @@ label{
 </style>
 
 <script>
+window.onload = function() {
 
-    function markVaid(){
-        console.log("Validated")
-    }
-
-    
-function submitform(){
-
-    let valid = true;
-
-    let username = document.getElementById('username').value;
+    let username = document.getElementById('username');
     let nameError = document.getElementById('name-error');
 
-    if (username === ""){
-        nameError.innerText = "name is required!";
-        valid = false;
-    } else {
-        nameError.innerText = "";
-    }
+    let fathername = document.getElementById('fathername');
+    let fatherNameError = document.getElementById('fathername-error');
 
-    let fathername = document.getElementById('fathername').value;
-    let fathernameerror = document.getElementById('fathername-error');
-
-    if (fathername === ""){
-        fathernameerror.innerText = "father name is required!";
-        valid = false;
-    } else {
-        fathernameerror.innerText = "";
-    }
-
-    let image = document.getElementById('image').value;
-    let imageError = document.getElementById('image-error');
-
-    if (image === ""){
-        imageError.innerText = "image is required!";
-        valid = false;
-    } else {
-        imageError.innerText = "";
-    }
-
-    let email = document.getElementById('email').value;
+    let email = document.getElementById('email');
     let emailError = document.getElementById('email-error');
 
-    if (email === ""){
-        emailError.innerText = "Email is required!";
-        valid = false;
-    }
-    else if (email.indexOf("@") === -1){
-        emailError.innerText = "Email must contain @ symbol!";
-        valid = false;
-    } else {
-        emailError.innerText = "";
-    }
-
-    let password = document.getElementById('password').value;
+    let password = document.getElementById('password');
     let passwordError = document.getElementById('password-error');
 
-    if (password === ""){
-        passwordError.innerText = "Password is required!";
-        valid = false;
-    }
-    else if (password.length < 6){
-        passwordError.innerText = "Password must be at least 6 characters!";
-        valid = false;
-    } else {
-        passwordError.innerText = "";
-    }
-
-    let phone = document.getElementById('phonenumber').value;
+    let phone = document.getElementById('phonenumber');
     let phoneError = document.getElementById('phone-error');
 
-    if (phone === ""){
-        phoneError.innerText = "Phone number is required!";
-        valid = false;
-    }
-    else if (phone.length < 11){
-        phoneError.innerText = "Phone number must be at least 11 digits!";
-        valid = false;
-    } else {
-        phoneError.innerText = "";
+
+    // NAME
+    username.addEventListener('input', function() {
+        let value = username.value;
+        if (value === "") {
+            nameError.innerText = "name is required!";
+        } else if (value.includes(" ")) {
+            nameError.innerText = "NO spaces allowed in name!";
+        } else if (value.length < 3) {
+            nameError.innerText = "name must be at least 3 characters long!";
+        } else {
+            nameError.innerText = "";
+        }
+    });
+
+
+    // FATHER NAME
+    fathername.addEventListener('input', function() {
+        let value = fathername.value;
+        if (value === "") {
+            fatherNameError.innerText = "Father name is required!";
+        } else if (value.includes(" ")) {
+            fatherNameError.innerText = "NO spaces allowed in father name!";
+        } else if (value.length < 3) {
+            fatherNameError.innerText = "Father name must be at least 3 characters long!";
+        } else {
+            fatherNameError.innerText = "";
+        }
+    });
+
+
+    // EMAIL
+    email.addEventListener('input', function() {
+        let value = email.value;
+        if (value === "") {
+            emailError.innerText = "Email is required!";
+        } else if (!value.includes("@")) {
+            emailError.innerText = "Please enter a valid email address!";
+        } else if (!value.endsWith(".com")) {
+            emailError.innerText = "Email is incorrect!";
+        } else {
+            emailError.innerText = "";
+        }
+    });
+
+
+    // PASSWORD
+    password.addEventListener('input', function() {
+        let value = password.value;
+        let letters = (value.match(/[a-zA-Z]/g) || []).length;
+        let numbers = (value.match(/[0-9]/g) || []).length;
+        let specialChars = (value.match(/[@$!%*?&]/g) || []).length;
+        if (value === "") {
+            passwordError.innerText = "Password is required!";
+        }else if (letters < 4) {
+            passwordError.innerText = "Password must contain at least four letters!";
+        } else if (numbers < 3) {
+            passwordError.innerText = "Password must contain at least three numbers!";
+        } else if (specialChars < 1) {
+            passwordError.innerText = "Password must contain at least one special character!";
+        } else if (value.length < 8) {
+            passwordError.innerText = "Password must be at least 8 characters long!";
+        }  else {
+            passwordError.innerText = "";
+        }
+    });
+
+
+    // PHONE
+    phone.addEventListener('input', function() {
+        let value = phone.value;
+        let allDigits = true;
+        for (let i = 0; i < value.length; i++) {
+            if (value[i] < '0' || value[i] > '9') {
+                allDigits = false;
+                break;
+            }
+        }
+        if (value === "") {
+            phoneError.innerText = "Phone number is required!";
+        } else if (!allDigits) {
+            phoneError.innerText = "Phone number must contain only digits!";
+        } else if (value.length < 10) {
+            phoneError.innerText = "Phone number must be at least 10 characters long!";
+        } else if (value.length > 11) {
+            phoneError.innerText = "Phone number is invalid!";
+        } else {
+            phoneError.innerText = "";
+        }
+    });
+
+    window.submitform = function() {
+
+        let valid = true;
+
+        // NAME CHECK
+        if (username.value === "" || username.value.includes(" ") || username.value.length < 3) {
+            valid = false;
+        }
+
+        // FATHER NAME CHECK
+        if (fathername.value === "" || fathername.value.includes(" ") || fathername.value.length < 3) {
+            valid = false;
+        }
+
+        // EMAIL CHECK
+        if (email.value === "" || !email.value.includes("@") || !email.value.endsWith(".com")) {
+            valid = false;
+        }
+
+
+        if (password.value === "" || password.value.length < 8) {
+            valid = false;
+        }
+
+        if (phone.value === "" || phone.value.length < 10) {
+            valid = false;
+        }
+
+        if (valid === true) {
+            window.location.href = "index1.html";
+        }
     }
 
-    if (valid){
-      var a= document.querySelector(".form-box")
-      a.style.display = "none";
-      window.location.href='index1.html'
-    }
 }
 </script>
 </head>
@@ -337,16 +391,19 @@ function submitform(){
 <input type="text" id="fathername" placeholder="Enter father name">
 
 <label>Email</label>
-<input type="email" id="email" placeholder="Enter email">
 <p id="email-error" style="color:red;font-size:12px;"></p>
+<input type="email" id="email" placeholder="Enter email">
+
 
 <label>Password</label>
-<input type="password" id="password" placeholder="Enter password">
 <p id="password-error" style="color:red;font-size:12px;"></p>
+<input type="password" id="password" placeholder="Enter password">
+
 
 <label>Phone Number</label>
-<input type="tel" id="phonenumber" placeholder="Enter phone number">
 <p id="phone-error" style="color:red;font-size:12px;"></p>
+<input type="tel" id="phonenumber" placeholder="Enter phone number">
+
 
 </div>
 
