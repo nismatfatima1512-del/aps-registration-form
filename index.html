@@ -230,8 +230,8 @@ window.onload = function() {
         let value = username.value;
         if (value === "") {
             nameError.innerText = "name is required!";
-        } else if (value.includes(" ")) {
-            nameError.innerText = "NO spaces allowed in name!";
+        } else if (value !== value.trimStart()) {
+            nameError.innerText = "Name is invalid!";
         } else if (value.length < 3) {
             nameError.innerText = "name must be at least 3 characters long!";
         } else {
@@ -245,8 +245,8 @@ window.onload = function() {
         let value = fathername.value;
         if (value === "") {
             fatherNameError.innerText = "Father name is required!";
-        } else if (value.includes(" ")) {
-            fatherNameError.innerText = "NO spaces allowed in father name!";
+        } else if (value !== value.trimStart()) {
+            fatherNameError.innerText = "Father name is invalid!";
         } else if (value.length < 3) {
             fatherNameError.innerText = "Father name must be at least 3 characters long!";
         } else {
