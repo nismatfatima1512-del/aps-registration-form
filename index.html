@@ -124,7 +124,7 @@ textarea{
     margin-top:25px;
 }
 
-.actions button{
+.actions button:enabled{
     padding:12px 35px;
     background:#0a5c0a;
     color:white;
@@ -132,6 +132,16 @@ textarea{
     border-radius:25px;
     font-size:15px;
     cursor:pointer;
+}
+
+.actions button:disabled{
+    padding:12px 35px;
+    background:#ccc;
+    color:#666;
+    border:none;
+    border-radius:25px;
+    font-size:15px;
+    cursor:not-allowed;
 }
 
 .actions button:hover{
@@ -207,7 +217,11 @@ label{
 </style>
 
 <script>
+
 window.onload = function() {
+    let button = document.getElementById('button');
+    button.disabled = true;
+
 
     let username = document.getElementById('username');
     let nameError = document.getElementById('name-error');
@@ -224,6 +238,8 @@ window.onload = function() {
     let phone = document.getElementById('phonenumber');
     let phoneError = document.getElementById('phone-error');
 
+    let declaration = document.querySelector('.checkbox-row input');
+
 
     // NAME
     username.addEventListener('input', function() {
@@ -237,6 +253,7 @@ window.onload = function() {
         } else {
             nameError.innerText = "";
         }
+        checkAllValid();
     });
 
 
@@ -252,6 +269,7 @@ window.onload = function() {
         } else {
             fatherNameError.innerText = "";
         }
+        checkAllValid();
     });
 
 
@@ -267,6 +285,7 @@ window.onload = function() {
         } else {
             emailError.innerText = "";
         }
+        checkAllValid();
     });
 
 
@@ -289,6 +308,7 @@ window.onload = function() {
         }  else {
             passwordError.innerText = "";
         }
+            checkAllValid();
     });
 
 
@@ -313,11 +333,41 @@ window.onload = function() {
         } else {
             phoneError.innerText = "";
         }
+        checkAllValid();
     });
+
+    declaration.addEventListener('change', function() {
+        checkAllValid();
+    });
+
+
+    function checkAllValid() {
+    let nameOk = username.value.trim().length >= 3 && username.value === username.value.trimStart();
+    let fatherOk = fathername.value.trim().length >= 3 && fathername.value === fathername.value.trimStart();
+    let emailOk = email.value.includes("@") && email.value.endsWith(".com");
+    
+    let pass = password.value;
+    let letters = (pass.match(/[a-zA-Z]/g) || []).length;
+    let numbers = (pass.match(/[0-9]/g) || []).length;
+    let specials = (pass.match(/[@$!%*?&]/g) || []).length;
+    let passOk = letters >= 4 && numbers >= 3 && specials >= 1 && pass.length >= 8;
+
+    let ph = phone.value;
+    let allDigits = /^\d+$/.test(ph);
+    let phoneOk = allDigits && ph.length >= 10 && ph.length <= 11;
+
+    let declarationOk = declaration.checked;
+
+    button.disabled = !(nameOk && fatherOk && emailOk && passOk && phoneOk && declarationOk);
+}
+
+
 
     window.submitform = function() {
 
         let valid = true;
+        
+        
 
         // NAME CHECK
         if (username.value === "" || username.value.includes(" ") || username.value.length < 3) {
@@ -337,14 +387,17 @@ window.onload = function() {
 
         if (password.value === "" || password.value.length < 8) {
             valid = false;
+           
         }
 
         if (phone.value === "" || phone.value.length < 10) {
             valid = false;
+           
         }
 
         if (valid === true) {
             window.location.href = "index1.html";
+           
         }
     }
 
@@ -427,8 +480,9 @@ window.onload = function() {
 </div>
 
 <div class="actions">
-<button type="button" onclick="submitform()">Submit Registration</button>
+<button type="button" id="button" onclick="window.location.href='index1.html' ">Submit Registration</button>
 </div>
+
 
 </form>
 
